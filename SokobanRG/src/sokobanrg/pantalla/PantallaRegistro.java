@@ -26,7 +26,7 @@ public class PantallaRegistro extends PantallaBase {
         super.show();
 
         if (juegoSokoban.getManejadorRecursos().getSkinUI() == null) {
-            System.out.println("Manejador de Recursos: Skin no cargada en PantallaRegistro. Modo texto activo.");
+            System.out.println("Skin no cargada.");
             return;
         }
 
@@ -47,7 +47,7 @@ public class PantallaRegistro extends PantallaBase {
         lineaSup.setBackground(skin.getDrawable("border-bg"));
         
         Label titulo = new Label("SOKOBAN", skin, "title");
-        Label subtitulo = new Label("— Crear Cuenta —", skin, "subtitle");
+        Label subtitulo = new Label("Crear Cuenta", skin, "subtitle");
 
         campoNombreCompleto = crearCampoTexto("  Nombre completo");
         campoUsuario        = crearCampoTexto("  Nombre de usuario");
@@ -111,17 +111,18 @@ public class PantallaRegistro extends PantallaBase {
             return;
         }
 
-        List<Usuario> usuarios = juegoSokoban.getAlmacenamiento().cargarUsuarios();
-        for (Usuario u : usuarios) {
-            if (u.getNombreUsuario().equalsIgnoreCase(usuario)) {
-                actualizarMensaje("El nombre de usuario ya está registrado.");
-                return;
-            }
+        if (!contrasenia.matches("^(?=.*[a-zA-Z])(?=.*\\d)[a-zA-Z\\d]+$")) {
+            actualizarMensaje("La contraseña debe ser alfanumerica.");
+            return;
+        }
+
+        if (juegoSokoban.getAlmacenamiento().existeUsuario(usuario)) {
+            actualizarMensaje("El nombre de usuario ya está registrado.");
+            return;
         }
 
         Usuario nuevoUsuario = new Usuario(usuario, contrasenia, nombre, "");
-        usuarios.add(nuevoUsuario);
-        juegoSokoban.getAlmacenamiento().guardarUsuarios(usuarios);
+        juegoSokoban.getAlmacenamiento().guardarUsuario(nuevoUsuario);
 
         actualizarMensaje("¡Registro exitoso!");
         juegoSokoban.mostrarPantallaLogin();

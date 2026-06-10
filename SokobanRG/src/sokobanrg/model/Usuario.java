@@ -13,22 +13,34 @@ public class Usuario implements Serializable {
     private Date fechaRegistro;
     private Date ultimaSesion;
     private int nivelMaximoDesbloqueado;
+    private int nivelActual; // Nivel actual del usuario
     private int tiempoTotalJugado;
     private int partidasJugadas;
     private int puntuacionGeneral;
     private List<Partida> historialPartidas;
+    private String rutaAvatar;
 
     public Usuario(String nombreUsuario, String contrasenia, String nombreCompleto, String rutaAvatar) {
         this.nombreUsuario = nombreUsuario;
         this.contrasenia = contrasenia;
         this.nombreCompleto = nombreCompleto;
+        this.rutaAvatar = rutaAvatar;
         this.fechaRegistro = new Date();
         this.ultimaSesion = new Date();
         this.nivelMaximoDesbloqueado = 1;
+        this.nivelActual = 1;
         this.tiempoTotalJugado = 0;
         this.partidasJugadas = 0;
         this.puntuacionGeneral = 0;
         this.historialPartidas = new ArrayList<>();
+    }
+
+    public String getRutaAvatar() {
+        return rutaAvatar;
+    }
+
+    public void setRutaAvatar(String rutaAvatar) {
+        this.rutaAvatar = rutaAvatar;
     }
 
     public String getNombreUsuario() {
@@ -117,5 +129,17 @@ public class Usuario implements Serializable {
                 this.nivelMaximoDesbloqueado = partida.getNumeroNivel() + 1;
             }
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "nombreUsuario='" + nombreUsuario + '\'' +
+                ", nombreCompleto='" + nombreCompleto + '\'' +
+                ", rutaAvatar='" + rutaAvatar + '\'' +
+                ", fechaRegistro=" + fechaRegistro +
+                ", nivelMaximoDesbloqueado=" + nivelMaximoDesbloqueado +
+                ", partidasJugadas=" + partidasJugadas +
+                '}';
     }
 }

@@ -98,18 +98,16 @@ public class PantallaLogin extends PantallaBase {
             return;
         }
 
-        List<Usuario> usuarios = juegoSokoban.getAlmacenamiento().cargarUsuarios();
-        for (Usuario u : usuarios) {
-            if (u.getNombreUsuario().equalsIgnoreCase(nombreUsuario)) {
-                if (u.getContrasenia().equals(contrasenia)) {
-                    juegoSokoban.setUsuarioActual(u);
-                    actualizarMensaje("¡Bienvenido, " + u.getNombreCompleto() + "!");
-                    juegoSokoban.mostrarPantallaMenu();
-                    return;
-                } else {
-                    actualizarMensaje("Contraseña incorrecta.");
-                    return;
-                }
+        Usuario u = juegoSokoban.getAlmacenamiento().cargarUsuario(nombreUsuario);
+        if (u != null) {
+            if (u.getContrasenia().equals(contrasenia)) {
+                juegoSokoban.setUsuarioActual(u);
+                actualizarMensaje("¡Bienvenido, " + u.getNombreCompleto() + "!");
+                juegoSokoban.mostrarPantallaMenu();
+                return;
+            } else {
+                actualizarMensaje("Contraseña incorrecta.");
+                return;
             }
         }
         actualizarMensaje("El usuario no existe.");

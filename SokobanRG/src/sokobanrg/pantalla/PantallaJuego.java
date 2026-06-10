@@ -41,8 +41,6 @@ public class PantallaJuego extends PantallaBase {
         Label lblTitulo = crearEtiqueta("Nivel " + nivelActual, true);
         tablaPanel.add(lblTitulo).padBottom(40).row();
 
-        Label lblProximamente = crearEtiqueta("Lógica del juego próximamente...", false);
-        tablaPanel.add(lblProximamente).padBottom(40).row();
 
         TextButton btnVolver = crearBoton("Volver a Selección");
         btnVolver.addListener(new ClickListener() {
