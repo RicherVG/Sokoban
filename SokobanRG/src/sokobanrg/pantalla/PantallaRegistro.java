@@ -57,7 +57,7 @@ public class PantallaRegistro extends PantallaBase {
 
         etiquetaMensaje = new Label("", skin, "message");
 
-        TextButton botonRegistrar = crearBoton("▶  REGISTRARSE");
+        TextButton botonRegistrar = crearBoton("REGISTRARSE");
         TextButton botonVolver    = new TextButton("Volver al Login", skin, "secondary");
 
         Table lineaInf = new Table();

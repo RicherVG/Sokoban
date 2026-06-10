@@ -44,6 +44,18 @@ public class SokobanJuego extends Game {
         setScreen(new PantallaRegistro(this));
     }
 
+    public void mostrarPantallaMenu() {
+        setScreen(new sokobanrg.pantalla.PantallaMenu(this));
+    }
+
+    public void mostrarPantallaSeleccionNivel() {
+        setScreen(new sokobanrg.pantalla.PantallaSeleccionNivel(this));
+    }
+
+    public void mostrarPantallaJuego(int nivel) {
+        setScreen(new sokobanrg.pantalla.PantallaJuego(this, nivel));
+    }
+
     @Override
     public void dispose() {
         super.dispose();

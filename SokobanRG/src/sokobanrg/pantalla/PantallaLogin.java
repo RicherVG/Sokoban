@@ -49,7 +49,7 @@ public class PantallaLogin extends PantallaBase {
         
         Label titulo = new Label("SOKOBAN", skin, "title");
 
-        Label subtitulo = new Label("— Iniciar Sesión —", skin, "subtitle");
+        Label subtitulo = new Label("Iniciar Sesión", skin, "subtitle");
 
         campoUsuario     = crearCampoTexto("  Nombre de usuario");
         campoContrasenia = crearCampoTexto("  Contraseña");
@@ -58,7 +58,7 @@ public class PantallaLogin extends PantallaBase {
 
         etiquetaMensaje = new Label("", skin, "message");
 
-        TextButton botonLogin       = crearBoton("▶  INGRESAR");
+        TextButton botonLogin       = crearBoton("INGRESAR");
         TextButton botonIrARegistro = new TextButton("Crear cuenta nueva", skin, "secondary");
 
         Table lineaInf = new Table();
@@ -104,6 +104,7 @@ public class PantallaLogin extends PantallaBase {
                 if (u.getContrasenia().equals(contrasenia)) {
                     juegoSokoban.setUsuarioActual(u);
                     actualizarMensaje("¡Bienvenido, " + u.getNombreCompleto() + "!");
+                    juegoSokoban.mostrarPantallaMenu();
                     return;
                 } else {
                     actualizarMensaje("Contraseña incorrecta.");
